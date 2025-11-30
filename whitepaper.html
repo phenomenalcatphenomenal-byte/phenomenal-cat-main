@@ -3,11 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- GitHub Pages Fix Meta Tags -->
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://www.phenomenalcatglobal.com/whitepaper" />
+    
     <title>PHENOMENAL CAT ($PCAT) - White Paper</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GitHub Pages URL Fix Script -->
+    <script>
+        // Immediate URL cleanup for GitHub Pages
+        (function() {
+            'use strict';
+            
+            // Set clean title
+            document.title = "PHENOMENAL CAT ($PCAT) - White Paper";
+            
+            // Fix URL for GitHub Pages
+            const currentPath = window.location.pathname;
+            
+            // Handle whitepaper.html access
+            if (currentPath.includes('whitepaper.html')) {
+                const cleanPath = currentPath.replace('whitepaper.html', 'whitepaper');
+                window.history.replaceState({}, document.title, cleanPath);
+            }
+            // Handle direct /whitepaper access (without .html)
+            else if (currentPath === '/whitepaper' || currentPath === '/whitepaper/') {
+                // URL is correct, no change needed
+            }
+            // Handle any other .html extensions
+            else if (currentPath.endsWith('.html')) {
+                const cleanPath = currentPath.replace('.html', '');
+                window.history.replaceState({}, document.title, cleanPath);
+            }
+        })();
+    </script>
+    
     <style>
         /* Global Styles */
         * {
@@ -116,30 +151,30 @@
         }
         
         /* Header Styles */
-       header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 30px 0;
-    z-index: 1000;
-    transition: var(--transition);
-    background: rgba(13, 13, 13, 0.95);
-}
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 0;
+            z-index: 1000;
+            transition: var(--transition);
+            background: rgba(13, 13, 13, 0.95);
+        }
         
-       header.scrolled {
-    background: rgba(13, 13, 13, 0.95);
-    padding: 20px 20px; /* Update padding here too */
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
+        header.scrolled {
+            background: rgba(13, 13, 13, 0.95);
+            padding: 20px 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
         
-       .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 100%; /* Remove the container restriction */
-    padding: 0 20px; /* Add padding directly to header container */
-}
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 100%;
+            padding: 0 20px;
+        }
         
         .logo {
             font-family: 'Playfair Display', serif;
@@ -210,7 +245,7 @@
             align-items: center;
             overflow: hidden;
             margin-top: 80px;
-            background: url('images/pic7.png') no-repeat center center/cover fixed;
+            background: url('images/pic7.png') no-repeat center center/cover;
         }
         
         .hero:before {
@@ -353,7 +388,7 @@
             margin: 0;
         }
         
-        /* FIXED: Utilities Grid for Mobile */
+        /* Utilities Grid */
         .utilities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -367,9 +402,9 @@
             padding: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
-            display: block !important; /* Force display */
-            opacity: 1 !important; /* Force visibility */
-            visibility: visible !important; /* Force visibility */
+            display: block;
+            opacity: 1;
+            visibility: visible;
         }
         
         .utility-card:hover {
@@ -409,7 +444,7 @@
         
         /* Background Image Sections */
         .background-section {
-            background: url('images/pic8.png') no-repeat center center/cover fixed;
+            background: url('images/pic8.png') no-repeat center center/cover;
             position: relative;
         }
         
@@ -431,7 +466,7 @@
         .call-to-action {
             text-align: center;
             padding: 60px 0;
-            background: url('images/pic8.png') no-repeat center center/cover fixed;
+            background: url('images/pic8.png') no-repeat center center/cover;
             position: relative;
             border-radius: 15px;
             margin-top: 50px;
@@ -571,7 +606,6 @@
                 padding: 30px;
             }
             
-            /* FIXED: Ensure utilities grid works on tablets */
             .utilities-grid {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 20px;
@@ -579,10 +613,10 @@
         }
         
         /* Mobile landscape and small tablets (576px to 767px) */
-       @media (max-width: 767px) {
-    header {
-        padding: 20px 15px; /* Add horizontal padding for mobile */
-    }
+        @media (max-width: 767px) {
+            header {
+                padding: 20px 15px;
+            }
             
             .mobile-menu-btn {
                 display: block;
@@ -616,11 +650,6 @@
             .hero {
                 height: 50vh;
                 margin-top: 70px;
-                background-attachment: scroll;
-            }
-            
-            .background-section {
-                background-attachment: scroll;
             }
             
             .hero-content h1 {
@@ -644,7 +673,6 @@
                 grid-template-columns: 1fr;
             }
             
-            /* FIXED: Mobile layout for utilities grid */
             .utilities-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
@@ -664,7 +692,6 @@
             
             .call-to-action {
                 padding: 40px 20px;
-                background-attachment: scroll;
             }
             
             .call-to-action h2 {
@@ -699,7 +726,6 @@
                 font-size: 1.2rem;
             }
             
-            /* FIXED: Ensure utilities are visible on small mobile */
             .utilities-grid {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -721,44 +747,43 @@
         }
 
         .background-section {
-    background: url('images/pcat-img.jpg') no-repeat center center/cover fixed;
-    position: relative;
-}
-.background-section:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(13, 13, 13, 0.85);
-}
+            background: url('images/pcat-img.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+        .background-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 13, 13, 0.85);
+        }
 
-/* FIXED: Force display for all utility cards */
-.utility-card {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
+        .utility-card {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
-   <header>
-    <div class="header-container">
-        <a href="index.html" class="logo">PHENOMENAL<span>CAT</span></a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-        <nav id="mainNav">
-                  <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="whitepaper.html">WHITE PAPER</a></li>
-                    <li><a href="index.html#dashboard">Live Dashboard</a></li>
-                    <li><a href="index.html#how-to-buy">How to Buy</a></li>
-                    <li><a href="index.html#roadmap">Roadmap</a></li>
-                    <li><a href="index.html#faq">FAQ</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">PHENOMENAL<span>CAT</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/whitepaper">WHITE PAPER</a></li>
+                    <li><a href="/#dashboard">Live Dashboard</a></li>
+                    <li><a href="/#how-to-buy">How to Buy</a></li>
+                    <li><a href="/#roadmap">Roadmap</a></li>
+                    <li><a href="/#faq">FAQ</a></li>
+                    <li><a href="/#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -1099,7 +1124,7 @@
                     <p>The world will change- one Cat at a time.</p>
                     <p><strong>Phenomenal Catcoin - Leading the Way to a Phenomenal Future.</strong></p>
                 </div>
-                <a href="index.html#how-to-buy" class="btn btn-secondary">Join The Movement</a>
+                <a href="/#how-to-buy" class="btn btn-secondary">Join The Movement</a>
             </div>
         </div>
     </section>
@@ -1107,7 +1132,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <a href="index.html" class="footer-logo">PHENOMENAL<span>CAT</span></a>
+            <a href="/" class="footer-logo">PHENOMENAL<span>CAT</span></a>
             <div class="social-links">
                 <a href="#" title="SosoValue"><i class="fas fa-chart-line"></i></a>
                 <a href="https://x.com/phenomenalcat01?t=c4ewVrSyMBS_sSPyrZuZYw&s=09" target="_blank" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
@@ -1190,48 +1215,18 @@
             });
         });
 
-    
-// Remove .html from URL in address bar without redirecting
-if (window.history && window.history.replaceState) {
-    const newUrl = window.location.pathname.replace(/\.html$/, '');
-    window.history.replaceState({}, document.title, newUrl);
-}
-
-// Ensure clean title
-document.title = document.title.replace(/\.html$/, '');
-
-// Fix for GitHub Pages 404 on refresh
-if (window.location.pathname.includes('whitepaper.html')) {
-    // Redirect to clean URL
-    const cleanUrl = window.location.pathname.replace('whitepaper.html', 'whitepaper');
-    window.history.replaceState({}, document.title, cleanUrl);
-} else if (window.location.pathname.endsWith('/whitepaper/')) {
-    // Ensure trailing slash for GitHub Pages
-    const properUrl = window.location.pathname.replace('/whitepaper/', '/whitepaper/');
-    if (properUrl !== window.location.pathname) {
-        window.history.replaceState({}, document.title, properUrl);
-    }
-}
-
-// Also handle direct access
-document.addEventListener('DOMContentLoaded', function() {
-    const currentPath = window.location.pathname;
-    if (currentPath === '/' || currentPath === '/index.html') {
-        // Do nothing for home page
-    } else if (!currentPath.includes('whitepaper') && document.querySelector('body').innerHTML.includes('WHITE PAPER')) {
-        // If we're on whitepaper content but URL doesn't match, fix it
-        window.history.replaceState({}, document.title, '/whitepaper');
-    }
-});
-         if (window.location.pathname.endsWith('.html')) {
-            const cleanPath = window.location.pathname.replace('.html', '');
-            window.history.replaceState({}, document.title, cleanPath);
-        }
-
+        // GitHub Pages 404 fix - final cleanup
+        document.addEventListener('DOMContentLoaded', function() {
+            // Final URL cleanup
+            const path = window.location.pathname;
+            if (path.includes('.html')) {
+                const cleanPath = path.replace(/\.html$/, '');
+                window.history.replaceState({}, document.title, cleanPath);
+            }
+            
+            // Ensure clean title
+            document.title = document.title.replace(/\.html$/, '');
+        });
     </script>
 </body>
 </html>
-
-
-
-
