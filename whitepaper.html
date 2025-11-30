@@ -1200,8 +1200,33 @@ if (window.history && window.history.replaceState) {
 // Ensure clean title
 document.title = document.title.replace(/\.html$/, '');
 
+// Fix for GitHub Pages 404 on refresh
+if (window.location.pathname.includes('whitepaper.html')) {
+    // Redirect to clean URL
+    const cleanUrl = window.location.pathname.replace('whitepaper.html', 'whitepaper');
+    window.history.replaceState({}, document.title, cleanUrl);
+} else if (window.location.pathname.endsWith('/whitepaper/')) {
+    // Ensure trailing slash for GitHub Pages
+    const properUrl = window.location.pathname.replace('/whitepaper/', '/whitepaper/');
+    if (properUrl !== window.location.pathname) {
+        window.history.replaceState({}, document.title, properUrl);
+    }
+}
+
+// Also handle direct access
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPath = window.location.pathname;
+    if (currentPath === '/' || currentPath === '/index.html') {
+        // Do nothing for home page
+    } else if (!currentPath.includes('whitepaper') && document.querySelector('body').innerHTML.includes('WHITE PAPER')) {
+        // If we're on whitepaper content but URL doesn't match, fix it
+        window.history.replaceState({}, document.title, '/whitepaper');
+    }
+});
+
     </script>
 </body>
 </html>
+
 
 
