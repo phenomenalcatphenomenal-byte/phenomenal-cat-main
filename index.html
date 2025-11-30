@@ -2903,9 +2903,44 @@
         document.addEventListener('DOMContentLoaded', () => {
             new TokenDashboard();
         });
+        // Comprehensive URL cleanup for index.html
+(function() {
+    'use strict';
+    
+    // Set clean title immediately
+    document.title = "PHENOMENAL CAT - Official Token";
+    
+    // Clean up URL
+    function cleanURL() {
+        const path = window.location.pathname;
+        const hash = window.location.hash;
+        const search = window.location.search;
+        
+        // Remove index.html from path
+        let newPath = path.replace(/\/index\.html$/i, '/');
+        newPath = newPath.replace(/index\.html$/i, '');
+        
+        // If path was changed, update URL
+        if (newPath !== path) {
+            const newURL = newPath + search + hash;
+            window.history.replaceState({}, document.title, newURL);
+        }
+    }
+    
+    // Run on page load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', cleanURL);
+    } else {
+        cleanURL();
+    }
+    
+    // Also clean up if user navigates back/forward
+    window.addEventListener('popstate', cleanURL);
+})();
     </script>
 </body>
 </html>
+
 
 
 
