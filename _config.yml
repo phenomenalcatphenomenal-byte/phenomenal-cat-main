@@ -1,0 +1,11 @@
+title: "PHENOMENAL CAT"
+baseurl: ""
+url: "https://phenomenalcatglobal.com"
+permalink: pretty
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+      title: "PHENOMENAL CAT"
