@@ -353,6 +353,7 @@
             margin: 0;
         }
         
+        /* FIXED: Utilities Grid for Mobile */
         .utilities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -366,6 +367,9 @@
             padding: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
+            display: block !important; /* Force display */
+            opacity: 1 !important; /* Force visibility */
+            visibility: visible !important; /* Force visibility */
         }
         
         .utility-card:hover {
@@ -567,8 +571,10 @@
                 padding: 30px;
             }
             
+            /* FIXED: Ensure utilities grid works on tablets */
             .utilities-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
             }
         }
         
@@ -638,6 +644,24 @@
                 grid-template-columns: 1fr;
             }
             
+            /* FIXED: Mobile layout for utilities grid */
+            .utilities-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .utility-card {
+                padding: 20px;
+            }
+            
+            .utility-card h4 {
+                font-size: 1.1rem;
+            }
+            
+            .utility-card h4 i {
+                font-size: 1.3rem;
+            }
+            
             .call-to-action {
                 padding: 40px 20px;
                 background-attachment: scroll;
@@ -674,6 +698,26 @@
             .whitepaper-section h3 {
                 font-size: 1.2rem;
             }
+            
+            /* FIXED: Ensure utilities are visible on small mobile */
+            .utilities-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .utility-card {
+                padding: 15px;
+            }
+            
+            .utility-card h4 {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            
+            .utility-card li {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
         }
 
         .background-section {
@@ -688,6 +732,13 @@
     width: 100%;
     height: 100%;
     background: rgba(13, 13, 13, 0.85);
+}
+
+/* FIXED: Force display for all utility cards */
+.utility-card {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
     </style>
 </head>
@@ -1128,7 +1179,16 @@
                 }
             });
         });
+
+        // Force display utilities on mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const utilityCards = document.querySelectorAll('.utility-card');
+            utilityCards.forEach(card => {
+                card.style.display = 'block';
+                card.style.visibility = 'visible';
+                card.style.opacity = '1';
+            });
+        });
     </script>
 </body>
-
 </html>
