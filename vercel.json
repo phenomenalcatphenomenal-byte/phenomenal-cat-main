@@ -1,93 +1,19 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "images/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "videos/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "public/**/*",
-      "use": "@vercel/static"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
-  "routes": [
+  "headers": [
     {
-      "src": "/whitepaper",
-      "dest": "/whitepaper.html"
-    },
-    {
-      "src": "/thank-you",
-      "dest": "/thank_you.html"
-    },
-    {
-      "src": "/dashboard",
-      "dest": "/index.html#dashboard"
-    },
-    {
-      "src": "/how-to-buy",
-      "dest": "/index.html#how-to-buy"
-    },
-    {
-      "src": "/features",
-      "dest": "/index.html#features"
-    },
-    {
-      "src": "/roadmap",
-      "dest": "/index.html#roadmap"
-    },
-    {
-      "src": "/faq",
-      "dest": "/index.html#faq"
-    },
-    {
-      "src": "/audit",
-      "dest": "/index.html#audit-kyc"
-    },
-    {
-      "src": "/community",
-      "dest": "/index.html#contact"
-    },
-    {
-      "src": "/home",
-      "status": 301,
-      "headers": {
-        "Location": "/"
-      }
-    },
-    {
-      "src": "/main",
-      "status": 301,
-      "headers": {
-        "Location": "/"
-      }
-    },
-    {
-      "src": "/index",
-      "status": 301,
-      "headers": {
-        "Location": "/"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "headers": {
-        "X-Frame-Options": "DENY",
-        "X-Content-Type-Options": "nosniff",
-        "Referrer-Policy": "strict-origin-when-cross-origin"
-      },
-      "continue": true
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
     }
   ]
 }
