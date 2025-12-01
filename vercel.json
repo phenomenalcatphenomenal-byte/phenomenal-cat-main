@@ -28,7 +28,21 @@
       }
     },
     {
-      "src": "/([^/.]+)/?$",
+      "src": "/([^./]+)\\.html/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/$1"
+      }
+    },
+    {
+      "src": "/index\\.html/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/"
+      }
+    },
+    {
+      "src": "/([^./]+)/?$",
       "dest": "/$1.html",
       "headers": {
         "cache-control": "no-cache, no-store, must-revalidate"
@@ -68,21 +82,14 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
         }
       ]
     }
   ],
   "cleanUrls": true,
   "trailingSlash": false
-}
-{
-  "src": "/([^/.]+)/([^/.]+)/?$",
-  "dest": "/$1/$2.html"
-}
-{
-  "src": "/([^/.]+)\\.html/?$",
-  "status": 301,
-  "headers": {
-    "Location": "/$1"
-  }
 }
