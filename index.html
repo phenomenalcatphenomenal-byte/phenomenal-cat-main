@@ -2705,11 +2705,10 @@
                 this.updateMetric('totalSupply', data.totalSupply, false);
                 this.updateMetric('transfers', data.transfers, false);
                 
-                // Update changes
-                this.updateChange('priceChange', data.priceChange24h);
-                this.updateChange('holdersChange', data.holderChange);
-                this.updateChange('priceChange24h', data.priceChange24h);
-                this.updateChange('priceChange24hLabel', data.priceChange24h);
+             // Update changes
+this.updateChange('priceChange', data.priceChange24h);
+this.updateChange('holdersChange', data.holderChange);
+this.updateChange('priceChange24h', data.priceChange24h);  // Keep only this one
                 
                 // Update data source
                 const holderSourceElement = document.getElementById('holderSource');
@@ -3035,6 +3034,7 @@
     </script>
 </body>
 </html>
+
 
 
 
