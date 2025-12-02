@@ -1617,15 +1617,15 @@
                 <i class="fas fa-bars"></i>
             </button>
             <nav id="mainNav">
-     <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="whitepaper">WHITE PAPER</a></li> <!-- Changed from whitepaper.html -->
-    <li><a href="#dashboard">Live Dashboard</a></li>
-    <li><a href="#how-to-buy">How to Buy</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact">Contact</a></li>
-</ul>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="whitepaper">WHITE PAPER</a></li>
+                    <li><a href="#dashboard">Live Dashboard</a></li>
+                    <li><a href="#how-to-buy">How to Buy</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </nav>
         </div>
     </header>
@@ -1709,10 +1709,11 @@
                         <div class="dashboard-stat-value dashboard-loading" id="liquidity">Loading...</div>
                         <div class="dashboard-stat-change" id="liquidityChange"></div>
                     </div>
-                 <div class="dashboard-stat-item">
-    <div class="dashboard-stat-label">24H CHANGE</div>
-    <div class="dashboard-stat-value dashboard-loading" id="priceChange24h">Loading...</div>
-</div>
+                    <div class="dashboard-stat-item">
+                        <div class="dashboard-stat-label">24H VOLUME</div>
+                        <div class="dashboard-stat-value dashboard-loading" id="volume24h">Loading...</div>
+                        <div class="dashboard-stat-change" id="volume24hChange"></div>
+                    </div>
                     <div class="dashboard-stat-item">
                         <div class="dashboard-stat-label">TOTAL SUPPLY</div>
                         <div class="dashboard-stat-value dashboard-loading" id="totalSupply">Loading...</div>
@@ -1726,7 +1727,6 @@
                     <div class="dashboard-stat-item">
                         <div class="dashboard-stat-label">24H CHANGE</div>
                         <div class="dashboard-stat-value dashboard-loading" id="priceChange24h">Loading...</div>
-                        <div class="dashboard-stat-change" id="priceChange24hLabel"></div>
                     </div>
                     <div class="dashboard-stat-item">
                         <div class="dashboard-stat-label">BUY TAX</div>
@@ -1841,7 +1841,7 @@
                     <div class="notes-container">
                         <h4 class="notes-title">Important Notes:</h4>
                         <ul>
-                            <li>Always use the official contract address
+                            <li>Always use the official contract address</li>
                             <li>Only buy from PancakeSwap V2</li>
                             <li>Set slippage to 3% if needed</li>
                             <li>Never share your private keys or seed phrase</li>
@@ -1964,7 +1964,7 @@
                     <div class="roadmap-content fade-in">
                         <div class="roadmap-period">Phase 5 – The Phenomenal Era (Long-Term Vision)</div>
                         <ul class="roadmap-list">
-                            <li>Full ecosystem: Token – DApps – DAO – NFT – Staking— Charity – Businesses</li>
+                            <li>Full ecosystem: Token – DApps – DAO – NFT – Staking – Charity – Businesses</li>
                             <li>Massive real-world adoption</li>
                             <li>Centralized funding institution under PCat ecosystem</li>
                             <li>Phenomenal Global Community Network</li>
@@ -2397,10 +2397,6 @@
                             <input type="text" id="duration" name="duration" placeholder="e.g., 6 months" required>
                         </div>
                         
-                        .dashboard-stats-grid {
-                            grid-template-columns: repeat(2, 1fr);
-                        }
-                    </select>
                         <div class="form-group">
                             <label for="sponsorWebsite">Website If Any:</label>
                             <input type="url" id="sponsorWebsite" name="sponsorWebsite">
@@ -2705,10 +2701,10 @@
                 this.updateMetric('totalSupply', data.totalSupply, false);
                 this.updateMetric('transfers', data.transfers, false);
                 
-             // Update changes
-this.updateChange('priceChange', data.priceChange24h);
-this.updateChange('holdersChange', data.holderChange);
-this.updateChange('priceChange24h', data.priceChange24h);  // Keep only this one
+                // Update changes
+                this.updateChange('priceChange', data.priceChange24h);
+                this.updateChange('holdersChange', data.holderChange);
+                this.updateChange('priceChange24h', data.priceChange24h);
                 
                 // Update data source
                 const holderSourceElement = document.getElementById('holderSource');
@@ -3020,25 +3016,18 @@ this.updateChange('priceChange24h', data.priceChange24h);  // Keep only this one
                 });
             });
         });
-          // Force remove .html from current URL
-  if (window.location.href.includes('.html')) {
-    window.history.replaceState({}, '', window.location.href.replace('.html', ''));
-  }
-  
-  // Force redirect .html links
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('a[href$=".html"]').forEach(function(link) {
-      link.href = link.href.replace('.html', '');
-    });
-  });
+        
+        // Force remove .html from current URL
+        if (window.location.href.includes('.html')) {
+            window.history.replaceState({}, '', window.location.href.replace('.html', ''));
+        }
+        
+        // Force redirect .html links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href$=".html"]').forEach(function(link) {
+                link.href = link.href.replace('.html', '');
+            });
+        });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
