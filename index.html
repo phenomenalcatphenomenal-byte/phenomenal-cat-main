@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHENOMENAL CAT ($PCAT) - Official Token</title>
+    
+    <!-- Animate.css CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* Global Styles */
         * {
@@ -44,6 +50,7 @@
             padding: 0 20px;
         }
         
+        /* Enhanced Button Animations */
         .btn {
             display: inline-block;
             padding: 14px 32px;
@@ -74,6 +81,8 @@
         
         .btn:hover {
             color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(197, 164, 126, 0.2);
         }
         
         .btn:hover:before {
@@ -107,6 +116,24 @@
         .section-title h2 {
             font-size: 2.5rem;
             margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-color), transparent);
+            transition: width 0.8s ease;
+        }
+        
+        .section-title.animate__animated h2::after {
+            width: 100px;
         }
         
         .section-title p {
@@ -115,7 +142,7 @@
             color: #aaa;
         }
         
-        /* Header Styles */
+        /* Header Styles with Animation */
         header {
             position: fixed;
             top: 0;
@@ -124,12 +151,23 @@
             padding: 30px 0;
             z-index: 1000;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         header.scrolled {
             background: rgba(13, 13, 13, 0.95);
             padding: 20px 0;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
         }
         
         .header-container {
@@ -149,6 +187,23 @@
         
         .logo span {
             color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .logo span::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover span::after {
+            transform: scaleX(1);
         }
         
         nav ul {
@@ -168,15 +223,16 @@
             text-transform: uppercase;
             position: relative;
             transition: var(--transition);
+            padding: 5px 0;
         }
         
         nav ul li a:after {
             content: '';
             position: absolute;
             width: 0;
-            height: 1px;
+            height: 2px;
             background: var(--secondary-color);
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             transition: var(--transition);
         }
@@ -199,7 +255,7 @@
             cursor: pointer;
         }
         
-        /* Hero Section */
+        /* Hero Section with Enhanced Animations */
         .hero {
             height: 100vh;
             position: relative;
@@ -249,16 +305,13 @@
             max-width: 800px;
             padding: 0 20px;
             z-index: 2;
-            transform: translateY(50px);
-            opacity: 0;
-            animation: fadeUp 1s ease forwards;
-            animation-delay: 0.5s;
         }
         
         .hero-content h1 {
             font-size: 4rem;
             margin-bottom: 20px;
             line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
         
         .hero-content p {
@@ -266,6 +319,7 @@
             margin-bottom: 40px;
             max-width: 600px;
             color: #ddd;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
         
         .hero-btns {
@@ -273,7 +327,7 @@
             gap: 20px;
         }
         
-        /* Live Dashboard Section */
+        /* Live Dashboard Section with Enhanced Animations */
         .dashboard-section {
             background-color: var(--dark-color);
             padding: 80px 0;
@@ -286,12 +340,37 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .dashboard-container.appear {
+            transform: translateY(0);
+            opacity: 1;
         }
         
         .dashboard-header {
             background: linear-gradient(135deg, #2c3e50, #34495e);
             color: white;
             padding: 25px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dashboard-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .dashboard-container:hover .dashboard-header::before {
+            left: 100%;
         }
         
         .dashboard-header-top {
@@ -376,6 +455,7 @@
             font-weight: 600;
         }
         
+        /* Enhanced Dashboard Stats */
         .dashboard-stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -392,10 +472,29 @@
             padding: 20px;
             text-align: center;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dashboard-stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(197, 164, 126, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .dashboard-stat-item:hover::before {
+            left: 100%;
         }
         
         .dashboard-stat-item:hover {
             background: #222;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
         .dashboard-stat-label {
@@ -409,6 +508,12 @@
             font-size: 1.3em;
             font-weight: 700;
             color: var(--light-color);
+            transition: all 0.3s ease;
+        }
+        
+        .dashboard-stat-item:hover .dashboard-stat-value {
+            color: var(--secondary-color);
+            transform: scale(1.1);
         }
         
         .dashboard-stat-change {
@@ -590,6 +695,7 @@
             background: rgba(13, 13, 13, 0.85);
         }
         
+        /* Enhanced Step Cards */
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -603,15 +709,31 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: center;
             padding: 2rem;
             border-top: 4px solid var(--secondary-color);
+            position: relative;
+        }
+        
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(to bottom, rgba(197, 164, 126, 0.1), transparent);
+            transition: height 0.3s ease;
+        }
+        
+        .step-card:hover::before {
+            height: 100%;
         }
         
         .step-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(197, 164, 126, 0.15);
         }
         
         .step-icon {
@@ -625,6 +747,12 @@
             margin: 0 auto 1.5rem;
             font-size: 2rem;
             color: var(--secondary-color);
+            transition: all 0.5s ease;
+        }
+        
+        .step-card:hover .step-icon {
+            transform: rotateY(360deg) scale(1.1);
+            background: rgba(197, 164, 126, 0.2);
         }
         
         .step-card h3 {
@@ -753,7 +881,7 @@
             border: 1px solid rgba(197, 164, 126, 0.2);
         }
         
-        /* Features Section */
+        /* Features Section with Enhanced Animations */
         .features-section {
             background-color: var(--dark-color);
         }
@@ -764,22 +892,48 @@
             gap: 30px;
         }
         
+        /* Enhanced Feature Cards */
         .feature-card {
             text-align: center;
             padding: 40px 30px;
             background: #141414;
-            transition: var(--transition);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: translateX(0);
         }
         
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(197, 164, 126, 0.1);
         }
         
         .feature-icon {
             font-size: 3rem;
             color: var(--secondary-color);
             margin-bottom: 25px;
+            transition: all 0.5s ease;
+            display: inline-block;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(10deg);
+            color: #fff;
         }
         
         .feature-card h3 {
@@ -841,6 +995,7 @@
             margin-right: auto;
         }
         
+        /* Enhanced Roadmap */
         .roadmap-content {
             background: #141414;
             border-radius: 10px;
@@ -849,6 +1004,13 @@
             position: relative;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border-left: 4px solid var(--secondary-color);
+            transition: all 0.5s ease;
+        }
+        
+        .roadmap-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(197, 164, 126, 0.1);
+            border-left-width: 8px;
         }
         
         .roadmap-content::before {
@@ -875,6 +1037,11 @@
             font-weight: 700;
             margin-bottom: 1rem;
             font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .roadmap-content:hover .roadmap-period {
+            transform: translateX(10px);
         }
         
         .roadmap-list {
@@ -896,7 +1063,7 @@
             color: var(--secondary-color);
         }
         
-        /* FAQ Section */
+        /* Enhanced FAQ */
         .faq-section {
             background-color: var(--dark-color);
         }
@@ -912,6 +1079,12 @@
             margin-bottom: 1rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(197, 164, 126, 0.1);
         }
         
         .faq-question {
@@ -942,6 +1115,11 @@
         
         .faq-item.active .faq-toggle {
             transform: rotate(45deg);
+        }
+        
+        .faq-item.active {
+            transform: translateX(20px);
+            border-left: 4px solid var(--secondary-color);
         }
         
         .faq-toggle {
@@ -1051,6 +1229,44 @@
             font-style: italic;
         }
         
+        /* Enhanced Social Links */
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #444;
+            color: var(--light-color);
+            text-decoration: none;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary-color);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .social-links a:hover::before {
+            left: 0;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px) rotate(5deg);
+            border-color: var(--secondary-color);
+            color: var(--dark-color);
+        }
+        
         /* Footer */
         footer {
             background: #0a0a0a;
@@ -1076,24 +1292,6 @@
             justify-content: center;
             gap: 20px;
             margin-bottom: 40px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid #444;
-            color: var(--light-color);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary-color);
-            border-color: var(--secondary-color);
         }
         
         .copyright {
@@ -1134,6 +1332,56 @@
         
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+        
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(197, 164, 126, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(197, 164, 126, 0.4);
+            }
+        }
+        
+        .glowing {
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        /* Custom Animated Elements */
+        .animated-text {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .animated-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary-color), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .animated-text:hover::after {
+            transform: scaleX(1);
         }
         
         .fade-in {
@@ -1609,28 +1857,28 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header with Animation -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">PHENOMENAL<span>CAT</span></a>
+            <a href="#" class="logo animate__animated animate__fadeInLeft animate__delay-1s">PHENOMENAL<span>CAT</span></a>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
-            <nav id="mainNav">
+            <nav id="mainNav" class="animate__animated animate__fadeInRight animate__delay-1s">
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="whitepaper">WHITE PAPER</a></li>
-                    <li><a href="#dashboard">Live Dashboard</a></li>
-                    <li><a href="#how-to-buy">How to Buy</a></li>
-                    <li><a href="#roadmap">Roadmap</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home" class="animate__animated">Home</a></li>
+                    <li><a href="whitepaper" class="animate__animated">WHITE PAPER</a></li>
+                    <li><a href="#dashboard" class="animate__animated">Live Dashboard</a></li>
+                    <li><a href="#how-to-buy" class="animate__animated">How to Buy</a></li>
+                    <li><a href="#roadmap" class="animate__animated">Roadmap</a></li>
+                    <li><a href="#faq" class="animate__animated">FAQ</a></li>
+                    <li><a href="#contact" class="animate__animated">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Enhanced Animations -->
     <section id="home" class="hero">
         <div class="hero-slider">
             <div class="slide slide-1 active"></div>
@@ -1639,25 +1887,27 @@
         </div>
         <div class="container">
             <div class="hero-content">
-                <h1>Welcome to PHENOMENAL CAT</h1>
-                <p>The future of meme tokens with real utility and educational value. Join our community and be part of something extraordinary.</p>
+                <h1 class="animate__animated animate__fadeInUp animate__delay-2s animate__slower">Welcome to PHENOMENAL CAT</h1>
+                <p class="animate__animated animate__fadeInUp animate__delay-2s5 animate__slower">The future of meme tokens with real utility and educational value. Join our community and be part of something extraordinary.</p>
                 <div class="hero-btns">
-                    <a href="https://pancakeswap.finance/swap?chain=bsc&chainOut=bsc&inputCurrency=BNB&outputCurrency=0xFeD56F9Cd29F44e7C61c396DAc95cb3ed33d3546&exactAmount=&exactField=INPUT" class="btn">Buy $PCAT Now</a>
-                    <a href="#dashboard" class="btn btn-secondary">Live Dashboard</a>
+                    <a href="https://pancakeswap.finance/swap?chain=bsc&chainOut=bsc&inputCurrency=BNB&outputCurrency=0xFeD56F9Cd29F44e7C61c396DAc95cb3ed33d3546&exactAmount=&exactField=INPUT" 
+                       class="btn animate__animated animate__bounceIn animate__delay-3s animate__slower floating">Buy $PCAT Now</a>
+                    <a href="#dashboard" 
+                       class="btn btn-secondary animate__animated animate__bounceIn animate__delay-3s5 animate__slower floating">Live Dashboard</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Live Dashboard Section -->
+    <!-- Live Dashboard Section with Animation -->
     <section id="dashboard" class="section dashboard-section">
         <div class="container">
-            <div class="section-title fade-in">
-                <h2>Live Token Dashboard</h2>
-                <p>Real-time market data for $PCAT powered by BSCScan</p>
+            <div class="section-title animate__animated animate__fadeInUp">
+                <h2 class="animated-text">Live Token Dashboard</h2>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Real-time market data for $PCAT powered by BSCScan</p>
             </div>
             
-            <div class="dashboard-container fade-in">
+            <div class="dashboard-container" id="dashboardContainer">
                 <div class="dashboard-header">
                     <div class="dashboard-header-top">
                         <h1 class="dashboard-token-name">PHENOMENAL CAT (PCAT)</h1>
@@ -1694,41 +1944,41 @@
 
                 <!-- UPDATED STATS GRID WITH ALL METRICS -->
                 <div class="dashboard-stats-grid">
-                    <div class="dashboard-stat-item">
+                    <div class="dashboard-stat-item animate__animated animate__fadeInUp animate__delay-1s">
                         <div class="dashboard-stat-label">PRICE (USD)</div>
                         <div class="dashboard-stat-value dashboard-loading" id="price">Loading...</div>
                         <div class="dashboard-stat-change" id="priceChange"></div>
                     </div>
-                    <div class="dashboard-stat-item">
+                    <div class="dashboard-stat-item animate__animated animate__fadeInUp animate__delay-1s">
                         <div class="dashboard-stat-label">HOLDERS</div>
                         <div class="dashboard-stat-value dashboard-loading" id="holders">Loading...</div>
                         <div class="dashboard-stat-change" id="holdersChange"></div>
                     </div>
-                    <div class="dashboard-stat-item">
+                    <div class="dashboard-stat-item animate__animated animate__fadeInUp animate__delay-1s">
                         <div class="dashboard-stat-label">LIQUIDITY</div>
                         <div class="dashboard-stat-value dashboard-loading" id="liquidity">Loading...</div>
                         <div class="dashboard-stat-change" id="liquidityChange"></div>
                     </div>
-                    <div class="dashboard-stat-item">
+                    <div class="dashboard-stat-item animate__animated animate__fadeInUp animate__delay-1s">
                         <div class="dashboard-stat-label">24H VOLUME</div>
                         <div class="dashboard-stat-value dashboard-loading" id="volume24h">Loading...</div>
                         <div class="dashboard-stat-change" id="volume24hChange"></div>
                     </div>
-                    <div class="dashboard-stat-item">
+                    <div class="dashboard-stat-item animate__animated animate__fadeInUp animate__delay-1s">
                         <div class="dashboard-stat-label">TOTAL SUPPLY</div>
                         <div class="dashboard-stat-value dashboard-loading" id="totalSupply">Loading...</div>
                         <div class="dashboard-stat-change"></div>
                     </div>
-                    <div class="dashboard-stat-item">
+                    <div class="dashboard-stat-item animate__animated animate__fadeInUp animate__delay-1s">
                         <div class="dashboard-stat-label">TRANSFERS</div>
                         <div class="dashboard-stat-value dashboard-loading" id="transfers">Loading...</div>
                         <div class="dashboard-stat-change"></div>
                     </div>
-                    <div class="dashboard-stat-item">
+                    <div class="dashboard-stat-item animate__animated animate__fadeInUp animate__delay-1s">
                         <div class="dashboard-stat-label">24H CHANGE</div>
                         <div class="dashboard-stat-value dashboard-loading" id="priceChange24h">Loading...</div>
                     </div>
-                    <div class="dashboard-stat-item">
+                    <div class="dashboard-stat-item animate__animated animate__fadeInUp animate__delay-1s">
                         <div class="dashboard-stat-label">BUY TAX</div>
                         <div class="dashboard-stat-value" style="color: #28a745;">3%</div>
                         <div class="dashboard-stat-change">1% LP, 1% Burn, 1% Mkt</div>
@@ -1740,11 +1990,11 @@
                     <div class="dashboard-chart-header">
                         <div class="dashboard-chart-title">PCAT/WBNB Live Price Chart</div>
                         <div class="dashboard-chart-timeframe">
-                            <button class="dashboard-timeframe-btn active" onclick="changeTimeframe('1h')">1H</button>
-                            <button class="dashboard-timeframe-btn" onclick="changeTimeframe('4h')">4H</button>
-                            <button class="dashboard-timeframe-btn" onclick="changeTimeframe('1d')">1D</button>
-                            <button class="dashboard-timeframe-btn" onclick="changeTimeframe('1w')">1W</button>
-                            <button class="dashboard-timeframe-btn" onclick="changeTimeframe('1m')">1M</button>
+                            <button class="dashboard-timeframe-btn active animate__animated animate__bounceIn animate__delay-2s" onclick="changeTimeframe('1h')">1H</button>
+                            <button class="dashboard-timeframe-btn animate__animated animate__bounceIn animate__delay-2s" onclick="changeTimeframe('4h')">4H</button>
+                            <button class="dashboard-timeframe-btn animate__animated animate__bounceIn animate__delay-2s" onclick="changeTimeframe('1d')">1D</button>
+                            <button class="dashboard-timeframe-btn animate__animated animate__bounceIn animate__delay-2s" onclick="changeTimeframe('1w')">1W</button>
+                            <button class="dashboard-timeframe-btn animate__animated animate__bounceIn animate__delay-2s" onclick="changeTimeframe('1m')">1M</button>
                         </div>
                     </div>
                     <div class="chart-wrapper">
@@ -1769,64 +2019,64 @@
         </div>
     </section>
 
-    <!-- How to Buy Section -->
+    <!-- How to Buy Section with Enhanced Animations -->
     <section id="how-to-buy" class="section how-to-buy-section">
         <div class="container">
-            <div class="section-title fade-in">
-                <h2>How to Buy $PCAT</h2>
-                <p>Follow these simple steps to join the PHENOMENAL CAT community</p>
+            <div class="section-title animate__animated animate__fadeInUp">
+                <h2 class="animated-text">How to Buy $PCAT</h2>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Follow these simple steps to join the PHENOMENAL CAT community</p>
             </div>
             
             <div class="steps-grid">
                 <!-- Step 1 -->
-                <div class="step-card fade-in">
-                    <div class="step-icon">
+                <div class="step-card animate__animated animate__fadeInLeft animate__delay-1s">
+                    <div class="step-icon animate__animated animate__bounceIn animate__delay-2s">
                         <img src="https://trustwallet.com/assets/images/media/assets/TWT.png" alt="Trust Wallet" class="trustwallet-logo">
                     </div>
-                    <h3><a href="https://link.trustwallet.com/download" target="_blank" class="trustwallet-link">Create a Trust Wallet</a></h3>
+                    <h3 class="animated-text"><a href="https://link.trustwallet.com/download" target="_blank" class="trustwallet-link">Create a Trust Wallet</a></h3>
                     <p>Download Trust Wallet from the official website or your preferred app store to get started.</p>
                 </div>
                 
                 <!-- Step 2 -->
-                <div class="step-card fade-in">
-                    <div class="step-icon">
+                <div class="step-card animate__animated animate__fadeInDown animate__delay-1s">
+                    <div class="step-icon animate__animated animate__bounceIn animate__delay-2s">
                         <i class="fab fa-bitcoin"></i>
                     </div>
-                    <h3>Get Some BNB</h3>
+                    <h3 class="animated-text">Get Some BNB</h3>
                     <p>Buy or send some BNB into your wallet (e.g. Binance, TrustWallet) to swap for $PCAT.</p>
                 </div>
                 
                 <!-- Step 3 -->
-                <div class="step-card fade-in">
-                    <div class="step-icon">
+                <div class="step-card animate__animated animate__fadeInDown animate__delay-1s">
+                    <div class="step-icon animate__animated animate__bounceIn animate__delay-2s">
                         <i class="fas fa-exchange-alt"></i>
                     </div>
-                    <h3>Swap BNB for PCAT</h3>
+                    <h3 class="animated-text">Swap BNB for PCAT</h3>
                     <p>Enter the amount of BNB you wish to swap for PCAT and confirm the transaction in your wallet.</p>
                 </div>
                 
                 <!-- Step 4 -->
-                <div class="step-card fade-in">
-                    <div class="step-icon">
+                <div class="step-card animate__animated animate__fadeInRight animate__delay-1s">
+                    <div class="step-icon animate__animated animate__bounceIn animate__delay-2s">
                         <img src="https://cryptologos.cc/logos/pancakeswap-cake-logo.svg" alt="PancakeSwap" class="pancakeswap-logo">
                     </div>
-                    <h3><a href="https://pancakeswap.finance/swap?chain=bsc&chainOut=bsc&inputCurrency=BNB&outputCurrency=0xFeD56F9Cd29F44e7C61c396DAc95cb3ed33d3546&exactAmount=&exactField=INPUT" target="_blank" class="pancakeswap-link">Go to PancakeSwap</a></h3>
+                    <h3 class="animated-text"><a href="https://pancakeswap.finance/swap?chain=bsc&chainOut=bsc&inputCurrency=BNB&outputCurrency=0xFeD56F9Cd29F44e7C61c396DAc95cb3ed33d3546&exactAmount=&exactField=INPUT" target="_blank" class="pancakeswap-link">Go to PancakeSwap</a></h3>
                     <p>Click the link above to go directly to PancakeSwap with PCAT pre-filled, or manually paste the contract address.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How to Buy Video Section -->
+    <!-- How to Buy Video Section with Animation -->
     <section id="how-to-buy-video" class="section">
         <div class="container">
-            <div class="section-title fade-in">
+            <div class="section-title animate__animated animate__fadeInDown">
                 <h2>How to Buy $PCAT - Video Guide</h2>
-                <p>Watch our step-by-step video tutorial to learn how to purchase $PCAT tokens</p>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Watch our step-by-step video tutorial to learn how to purchase $PCAT tokens</p>
             </div>
             
-            <div class="video-main-container fade-in">
-                <div class="video-wrapper-center">
+            <div class="video-main-container animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="video-wrapper-center animate__animated animate__zoomIn animate__delay-1s">
                     <video 
                         controls 
                         class="pcat-video-large"
@@ -1837,7 +2087,7 @@
                     </video>
                 </div>
                 
-                <div class="video-notes fade-in">
+                <div class="video-notes animate__animated animate__fadeInUp animate__delay-1s">
                     <div class="notes-container">
                         <h4 class="notes-title">Important Notes:</h4>
                         <ul>
@@ -1855,47 +2105,47 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features Section with Enhanced Animations -->
     <section id="features" class="section features-section">
         <div class="container">
-            <div class="section-title fade-in">
-                <h2>Our Features</h2>
-                <p>What makes PHENOMENAL CAT stand out from the crowd</p>
+            <div class="section-title animate__animated animate__fadeInUp">
+                <h2 class="animated-text">Our Features</h2>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">What makes PHENOMENAL CAT stand out from the crowd</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
+                <div class="feature-card animate__animated animate__fadeInLeft animate__delay-2s">
+                    <div class="feature-icon animate__animated animate__bounceIn animate__delay-3s">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3>Educational Platform</h3>
+                    <h3 class="animated-text">Educational Platform</h3>
                     <p>We're developing an educational platform to provide value beyond just being a meme token.</p>
                 </div>
                 
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
+                <div class="feature-card animate__animated animate__fadeInUp animate__delay-2s5">
+                    <div class="feature-icon animate__animated animate__bounceIn animate__delay-3s">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>Strong Community</h3>
+                    <h3 class="animated-text">Strong Community</h3>
                     <p>Join our growing community of dedicated holders who believe in the project's vision.</p>
                 </div>
                 
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
+                <div class="feature-card animate__animated animate__fadeInRight animate__delay-3s">
+                    <div class="feature-icon animate__animated animate__bounceIn animate__delay-3s">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Deflationary Mechanism</h3>
+                    <h3 class="animated-text">Deflationary Mechanism</h3>
                     <p>Our token features scheduled burns to increase scarcity and value over time.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Roadmap Section -->
+    <!-- Roadmap Section with Animation -->
     <section id="roadmap" class="section roadmap-section">
         <div class="container">
-            <div class="section-title fade-in">
+            <div class="section-title animate__animated animate__fadeInDown">
                 <h2>Roadmap</h2>
-                <p>Our strategic plan for growth and development</p>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Our strategic plan for growth and development</p>
             </div>
             
             <div class="roadmap-container">
@@ -1903,7 +2153,7 @@
                 
                 <!-- Phase 1 – Foundation -->
                 <div class="roadmap-item">
-                    <div class="roadmap-content fade-in">
+                    <div class="roadmap-content animate__animated animate__fadeInLeft animate__delay-1s">
                         <div class="roadmap-period">Phase 1 – Foundation</div>
                         <ul class="roadmap-list">
                             <li>Official token ($Pcat) launched successfully</li>
@@ -1918,7 +2168,7 @@
                 
                 <!-- Phase 2 – Stabilization & Trust -->
                 <div class="roadmap-item">
-                    <div class="roadmap-content fade-in">
+                    <div class="roadmap-content animate__animated animate__fadeInRight animate__delay-1s">
                         <div class="roadmap-period">Phase 2 – Stabilization & Trust</div>
                         <ul class="roadmap-list">
                             <li>21%+ of total supply burned so far to increase value (deflation)</li>
@@ -1933,7 +2183,7 @@
                 
                 <!-- Phase 3 – Expansion & Utility Integration -->
                 <div class="roadmap-item">
-                    <div class="roadmap-content fade-in">
+                    <div class="roadmap-content animate__animated animate__fadeInLeft animate__delay-1s">
                         <div class="roadmap-period">Phase 3 – Expansion & Utility Integration</div>
                         <ul class="roadmap-list">
                             <li>Launch of utilities & payment solutions (e.g., Phenexa wallet, pawnder)</li>
@@ -1948,7 +2198,7 @@
                 
                 <!-- Phase 4 – Real-World Impact & Sustainability -->
                 <div class="roadmap-item">
-                    <div class="roadmap-content fade-in">
+                    <div class="roadmap-content animate__animated animate__fadeInRight animate__delay-1s">
                         <div class="roadmap-period">Phase 4 – Real-World Impact & Sustainability</div>
                         <ul class="roadmap-list">
                             <li>Scholarship & children education fund</li>
@@ -1961,7 +2211,7 @@
                 
                 <!-- Phase 5 – The Phenomenal Era (Long-Term Vision) -->
                 <div class="roadmap-item">
-                    <div class="roadmap-content fade-in">
+                    <div class="roadmap-content animate__animated animate__fadeInLeft animate__delay-1s">
                         <div class="roadmap-period">Phase 5 – The Phenomenal Era (Long-Term Vision)</div>
                         <ul class="roadmap-list">
                             <li>Full ecosystem: Token – DApps – DAO – NFT – Staking – Charity – Businesses</li>
@@ -1976,17 +2226,17 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- FAQ Section with Animation -->
     <section id="faq" class="section faq-section">
         <div class="container">
-            <div class="section-title fade-in">
+            <div class="section-title animate__animated animate__fadeInDown">
                 <h2>Frequently Asked Questions</h2>
-                <p>Find answers to common questions about $PCAT</p>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Find answers to common questions about $PCAT</p>
             </div>
             
             <div class="faq-container">
                 <!-- Q1: Contract Not Renounced -->
-                <div class="faq-item fade-in">
+                <div class="faq-item animate__animated animate__fadeInUp animate__delay-1s">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         <span>Why is the Phenomenal Cat contract not renounced?</span>
                         <span class="faq-toggle"><i class="fas fa-plus"></i></span>
@@ -2012,7 +2262,7 @@
                 </div>
                 
                 <!-- Q2: Safety for Investors -->
-                <div class="faq-item fade-in">
+                <div class="faq-item animate__animated animate__fadeInUp animate__delay-1s">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         <span>Is Phenomenal Cat safe for investors?</span>
                         <span class="faq-toggle"><i class="fas fa-plus"></i></span>
@@ -2030,7 +2280,7 @@
                 </div>
                 
                 <!-- Q3: Utilities -->
-                <div class="faq-item fade-in">
+                <div class="faq-item animate__animated animate__fadeInUp animate__delay-1s">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         <span>What utilities is Phenomenal Cat planning to build?</span>
                         <span class="faq-toggle"><i class="fas fa-plus"></i></span>
@@ -2049,7 +2299,7 @@
                 </div>
                 
                 <!-- Q4: Future Renouncement -->
-                <div class="faq-item fade-in">
+                <div class="faq-item animate__animated animate__fadeInUp animate__delay-1s">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         <span>Will the contract be renounced in the future?</span>
                         <span class="faq-toggle"><i class="fas fa-plus"></i></span>
@@ -2061,7 +2311,7 @@
                 </div>
                 
                 <!-- Q5: Abuse Prevention -->
-                <div class="faq-item fade-in">
+                <div class="faq-item animate__animated animate__fadeInUp animate__delay-1s">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         <span>What stops the team from abusing ownership?</span>
                         <span class="faq-toggle"><i class="fas fa-plus"></i></span>
@@ -2080,7 +2330,7 @@
                 </div>
                 
                 <!-- Q6: Differentiation -->
-                <div class="faq-item fade-in">
+                <div class="faq-item animate__animated animate__fadeInUp animate__delay-1s">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         <span>What makes Phenomenal Cat different from other meme tokens?</span>
                         <span class="faq-toggle"><i class="fas fa-plus"></i></span>
@@ -2100,7 +2350,7 @@
                 </div>
                 
                 <!-- Q7: Long-term Vision -->
-                <div class="faq-item fade-in">
+                <div class="faq-item animate__animated animate__fadeInUp animate__delay-1s">
                     <div class="faq-question" onclick="toggleFAQ(this)">
                         <span>What is the long-term vision for Phenomenal Cat?</span>
                         <span class="faq-toggle"><i class="fas fa-plus"></i></span>
@@ -2121,15 +2371,15 @@
         </div>
     </section>
 
-    <!-- Audit/KYC Section -->
+    <!-- Audit/KYC Section with Animation -->
     <section id="audit-kyc" class="section audit-kyc-section">
         <div class="container">
-            <div class="section-title fade-in">
+            <div class="section-title animate__animated animate__fadeInDown">
                 <h2>Audit And KYC</h2>
-                <p>Verified security and transparency for your peace of mind</p>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Verified security and transparency for your peace of mind</p>
             </div>
             
-            <div class="audit-content fade-in">
+            <div class="audit-content animate__animated animate__fadeInUp animate__delay-1s">
                 <div class="audit-description">
                     <p>Every experienced crypto enthusiast understands that Smart Contract Audits and KYC verification are essential pillars of trust, transparency, and long-term project reliability. These processes ensure safety, reduce risk, and build investor confidence.</p>
                     
@@ -2147,10 +2397,10 @@
                 </div>
                 
                 <div class="audit-buttons">
-                    <a href="https://github.com/ContractWolf/smart-contract-audits/blob/main/ContractWolf_Audit_Phenomenal_Cat.pdf" class="btn btn-secondary">
+                    <a href="https://github.com/ContractWolf/smart-contract-audits/blob/main/ContractWolf_Audit_Phenomenal_Cat.pdf" class="btn btn-secondary animate__animated animate__pulse animate__delay-2s animate__infinite animate__slower">
                         <i class="fas fa-file-contract"></i> View Audit Report
                     </a>
-                    <a href="https://contractwolf.io/projects/phenomenal-cat" class="btn btn-secondary">
+                    <a href="https://contractwolf.io/projects/phenomenal-cat" class="btn btn-secondary animate__animated animate__pulse animate__delay-2s animate__infinite animate__slower">
                         <i class="fas fa-user-check"></i> View KYC Verification
                     </a>
                 </div>
@@ -2158,16 +2408,16 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section with Animation -->
     <section id="contact" class="section contact-section">
         <div class="container">
-            <div class="section-title fade-in">
+            <div class="section-title animate__animated animate__fadeInDown">
                 <h2>Community & Live Chart</h2>
-                <p>Connect with our community and track live cryptocurrency markets</p>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Connect with our community and track live cryptocurrency markets</p>
             </div>
             
             <div class="contact-container">
-                <div class="contact-info fade-in">
+                <div class="contact-info animate__animated animate__fadeInLeft animate__delay-1s">
                     <h3>Community Links</h3>
                     <p>Connect with us on our official social media channels and join the conversation!</p>
                     
@@ -2234,7 +2484,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-form fade-in">
+                <div class="contact-form animate__animated animate__fadeInRight animate__delay-1s">
                     <h3>Live Bitcoin Price Chart</h3>
                     <div class="chart-container">
                         <!-- TradingView Widget BEGIN -->
@@ -2284,14 +2534,14 @@
             </div>
             
             <!-- Partnership Form Button - Centered -->
-            <div class="partnership-button-container fade-in">
-                <button class="btn btn-secondary partnership-toggle-btn" onclick="togglePartnershipForm()">
+            <div class="partnership-button-container animate__animated animate__fadeInUp animate__delay-1s">
+                <button class="btn btn-secondary partnership-toggle-btn animate__animated animate__bounceIn animate__delay-2s" onclick="togglePartnershipForm()">
                     <i class="fas fa-handshake"></i> Partnership Request Form
                 </button>
             </div>
             
             <!-- Partnership Form (Initially Hidden) -->
-            <div class="partnership-form-container fade-in" id="partnershipFormContainer">
+            <div class="partnership-form-container" id="partnershipFormContainer">
                 <div class="partnership-form-wrapper">
                     <h3>Partnership Request Form</h3>
                     <form action="https://formsubmit.co/Phenomenalcatcoin@gmail.com" method="POST" id="partnershipForm" class="partnership-form">
@@ -2351,14 +2601,14 @@
             </div>
             
             <!-- Sponsorship Form Button - Centered -->
-            <div class="sponsorship-button-container fade-in">
-                <button class="btn btn-secondary sponsorship-toggle-btn" onclick="toggleSponsorshipForm()">
+            <div class="sponsorship-button-container animate__animated animate__fadeInUp animate__delay-1s">
+                <button class="btn btn-secondary sponsorship-toggle-btn animate__animated animate__bounceIn animate__delay-2s" onclick="toggleSponsorshipForm()">
                     <i class="fas fa-dollar-sign"></i> Sponsorship/Investment Form
                 </button>
             </div>
             
             <!-- Sponsorship Form (Initially Hidden) -->
-            <div class="sponsorship-form-container fade-in" id="sponsorshipFormContainer">
+            <div class="sponsorship-form-container" id="sponsorshipFormContainer">
                 <div class="partnership-form-wrapper">
                     <h3>Sponsorship/Investment Form</h3>
                     <form action="https://formsubmit.co/Phenomenalcatcoin@gmail.com" method="POST" id="sponsorshipForm" class="partnership-form">
@@ -2443,19 +2693,19 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer with Animation -->
     <footer>
         <div class="container">
-            <a href="#" class="footer-logo">PHENOMENAL<span>CAT</span></a>
+            <a href="#" class="footer-logo animate__animated animate__fadeInDown animate__delay-1s">PHENOMENAL<span>CAT</span></a>
             <div class="social-links">
-                <a href="#" title="SosoValue"><i class="fas fa-chart-line"></i></a>
-                <a href="https://x.com/phenomenalcat01?t=c4ewVrSyMBS_sSPyrZuZYw&s=09" target="_blank" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
-                <a href="https://chat.whatsapp.com/DWi7rQFHFb04cjTCzTfxe1?mode=wwt" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61580834890434" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://t.me/phenomenalcatcoin" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-                <a href="https://discord.gg/wvGUR6EM" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="#" title="SosoValue" class="animate__animated animate__bounceIn animate__delay-1s"><i class="fas fa-chart-line"></i></a>
+                <a href="https://x.com/phenomenalcat01?t=c4ewVrSyMBS_sSPyrZuZYw&s=09" target="_blank" title="X (Twitter)" class="animate__animated animate__bounceIn animate__delay-1s"><i class="fab fa-twitter"></i></a>
+                <a href="https://chat.whatsapp.com/DWi7rQFHFb04cjTCzTfxe1?mode=wwt" target="_blank" title="WhatsApp" class="animate__animated animate__bounceIn animate__delay-1s"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61580834890434" target="_blank" title="Facebook" class="animate__animated animate__bounceIn animate__delay-1s"><i class="fab fa-facebook"></i></a>
+                <a href="https://t.me/phenomenalcatcoin" target="_blank" title="Telegram" class="animate__animated animate__bounceIn animate__delay-1s"><i class="fab fa-telegram"></i></a>
+                <a href="https://discord.gg/wvGUR6EM" target="_blank" title="Discord" class="animate__animated animate__bounceIn animate__delay-1s"><i class="fab fa-discord"></i></a>
             </div>
-            <div class="copyright">
+            <div class="copyright animate__animated animate__fadeInUp animate__delay-1s">
                 <p>&copy; 2025 PHENOMENAL CAT ($PCAT). All rights reserved. | The Future of Meme Tokens with Real Utility</p>
             </div>
         </div>
@@ -2864,41 +3114,128 @@
         
         setInterval(changeSlide, 5000);
         
-        // Scroll animations
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('appear');
-                }
+        // Initialize animations on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate dashboard container
+            const dashboardContainer = document.getElementById('dashboardContainer');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        dashboardContainer.classList.add('appear');
+                        dashboardContainer.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            if (dashboardContainer) {
+                observer.observe(dashboardContainer);
+            }
+            
+            // Animate section titles
+            document.querySelectorAll('.section-title').forEach(title => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            title.classList.add('animate__animated');
+                            entry.target.querySelector('h2').classList.add('animated-text');
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(title);
             });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            
+            // Add hover animations to cards
+            document.querySelectorAll('.step-card, .feature-card, .roadmap-content').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.classList.add('animate__pulse', 'animate__faster');
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.classList.remove('animate__pulse', 'animate__faster');
+                });
+            });
+            
+            // Animate stats on dashboard hover
+            const stats = document.querySelectorAll('.dashboard-stat-item');
+            stats.forEach((stat, index) => {
+                stat.addEventListener('mouseenter', function() {
+                    this.classList.add('animate__tada', 'animate__faster');
+                });
+                
+                stat.addEventListener('mouseleave', function() {
+                    this.classList.remove('animate__tada', 'animate__faster');
+                });
+            });
+            
+            // Add floating animation to buttons periodically
+            setInterval(() => {
+                document.querySelectorAll('.btn').forEach(btn => {
+                    if (!btn.classList.contains('floating')) {
+                        btn.classList.add('floating');
+                        setTimeout(() => {
+                            btn.classList.remove('floating');
+                        }, 3000);
+                    }
+                });
+            }, 8000);
+            
+            // Animate social links on hover
+            document.querySelectorAll('.social-links a').forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.classList.add('animate__rubberBand', 'animate__faster');
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.classList.remove('animate__rubberBand', 'animate__faster');
+                });
+            });
+            
+            // Add glow effect to dashboard on data update
+            function addDashboardGlow() {
+                const dashboard = document.querySelector('.dashboard-container');
+                if (dashboard) {
+                    dashboard.classList.add('glowing');
+                    setTimeout(() => {
+                        dashboard.classList.remove('glowing');
+                    }, 2000);
+                }
+            }
+            
+            // Trigger glow when data updates (simulate every 30 seconds)
+            setInterval(addDashboardGlow, 30000);
         });
         
-        fadeElements.forEach(element => {
-            observer.observe(element);
-        });
-        
-        // FAQ Toggle
+        // FAQ Toggle with Animation
         function toggleFAQ(element) {
             const faqItem = element.parentElement;
             faqItem.classList.toggle('active');
+            
+            // Add animation
+            if (faqItem.classList.contains('active')) {
+                faqItem.classList.add('animate__flipInX', 'animate__faster');
+                setTimeout(() => {
+                    faqItem.classList.remove('animate__flipInX', 'animate__faster');
+                }, 500);
+            }
         }
 
-        // Copy Contract Address
+        // Enhanced copy address with animation
         function copyDashboardAddress() {
             const contractAddress = "0xFeD56F9Cd29F44e7C61c396DAc95cb3ed33d3546";
             navigator.clipboard.writeText(contractAddress).then(() => {
                 const btn = document.querySelector('.dashboard-copy-btn');
                 const originalHTML = btn.innerHTML;
+                
+                // Add animation
+                btn.classList.add('animate__bounce', 'animate__faster');
                 btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
                 btn.style.color = '#28a745';
+                
                 setTimeout(() => {
                     btn.innerHTML = originalHTML;
                     btn.style.color = '';
+                    btn.classList.remove('animate__bounce', 'animate__faster');
                 }, 2000);
             });
         }
@@ -2907,8 +3244,15 @@
             // Update active button
             document.querySelectorAll('.dashboard-timeframe-btn').forEach(btn => {
                 btn.classList.remove('active');
+                btn.classList.remove('animate__pulse');
             });
+            
             event.target.classList.add('active');
+            event.target.classList.add('animate__pulse', 'animate__faster');
+            
+            setTimeout(() => {
+                event.target.classList.remove('animate__pulse', 'animate__faster');
+            }, 500);
             
             // Update chart iframe with new timeframe
             const iframe = document.querySelector('.dashboard-dexscreener-chart-expanded');
@@ -3031,11 +3375,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
